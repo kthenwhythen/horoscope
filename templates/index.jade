@@ -1,17 +1,34 @@
-- extends "bootstrap/base.html"     
+- extends "base.jade"     
 
-- block title
-   | Coffee
-
-- block styles
-    | {{ super() }} 
-    - assets "sass_all"
-        link(rel="stylesheet", type="text/css", href=ASSET_URL)
-    - endassets
-
-- block navbar
-    nav.navbar
-        span.navbar-brand.h1 Navbar
+// Loads some of the macros included with Flask-Bootstrap (like flash msg)
+- import "bootstrap/utils.html" as utils
 
 - block content
-    h1 KEKwait
+    .container
+        .header 
+            .logo.col-xs-8
+                .logo-icon
+                    img(src=url_for("static", filename=path))
+                .logo-titles
+                    .logo-title Horoscope
+                    .logo-subtitle Знай как жить
+            .timer
+                p Следующее предсказание будет через 12 часов
+            .setting.col-xs-4
+                .hello-user Привет, Георгий!
+                .setting-icon
+                    img(src=url_for("static", filename="img/setting-icon.svg"))
+        .mobile-hello-timer
+            .hello-user
+                p Привет, Георгий
+            .timer
+                p.accent Следующее предсказание будет через 12 часов
+        .card
+            .top-line.row
+                .date.col-xs-8
+                    p.accent 13 марта / 2021
+                .is-check.col-xs-4
+                    p Исполнилось
+            .card-body
+                p.card-text lol
+    

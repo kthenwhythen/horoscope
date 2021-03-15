@@ -27,7 +27,7 @@ assets.register('sass_all', sass)
 
 @app.route('/')
 def index():
-    return render_template('index.jade')
+    return render_template('index.jade', path="img/logo-icon.svg")
 
 
 if __name__ == '__main__':
