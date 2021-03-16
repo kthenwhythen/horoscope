@@ -2,98 +2,44 @@
 
 - block scripts
     | {{super()}}
-    script(type='text/javascript').
-        //- $(document).ready(
-        //-     function reveal() {
-        //-         $("#card-today" ).hover(
-        //-             function in() {
-        //-                 $(this).find("p").remove();
-        //-             },
-        //-             function out() {
-        //-                 $(this).append($("<p>lol</p>"))
-        //-             }
-        //-         );
-        //-     }
-        //- );
-
-        $("#card-today" ).hover(
-            function in() {
-                console.log("lol")
-                $(this).find("p").remove();
-            },
-            function out() {
-                console.log(kek)
-                $(this).append($("<p>lol</p>"))
-            }
-        );
-
-        $( "li" ).hover(
-        function() {
-            $( this ).append( $( "<span> ***</span>" ) );
-        }, function() {
-            $( this ).find( "span:last" ).remove();
-        }
-        );
-
-
-    //- $(document).ready(
-    //-     function () {
-    //-         $("#card-today" ).hover(
-    //-             function( event ) {
-    //-                 sendAjaxForm("form1", "msg");
-    //-                 event.preventDefault();
-    //-             }
-    //-         );
-    //-     }
-    //- );
-
-    //- function translate(sourceElem, destElem, sourceLang, destLang) {
-    //-     $(destElem).html('<img src="{{ url_for('static', filename='loading.gif') }}">');
-    //-     $.post('/translate', {
-    //-         text: $(sourceElem).text(),
-    //-         source_language: sourceLang,
-    //-         dest_language: destLang
-    //-     }).done(function(response) {
-    //-         $(destElem).text(response['text'])
-    //-     }).fail(function() {
-    //-         $(destElem).text("{{ _('Error: Could not contact server.') }}");
-    //-     });
-    //- }
+    script(src=url_for("static", filename="js/app.js"))
 
 
 - block content
     .container
         .header 
-            .logo.col-xs-8
-                .logo-icon
-                    img(src=url_for("static", filename=path))
-                .logo-titles
-                    .logo-title Horoscope
-                    .logo-subtitle Знай как жить
+            a(href=url_for("index"))
+                .logo.col-xs-8
+                    .logo-icon
+                        img(src=url_for("static", filename=path))
+                    .logo-titles
+                        .logo-title Horoscope
+                        .logo-subtitle Знай как жить
             .timer
                 p Следующее предсказание будет через 12 часов
             .setting.col-xs-4
                 .hello-user Привет, Георгий!
-                .setting-icon
-                    img(src=url_for("static", filename="img/setting-icon.svg"))
-        .mobile-hello-timer
-            .hello-user
-                p 
-                    | Привет, 
-                    span= name
-            .timer
-                p.accent Следующее предсказание будет через 12 часов
+                a(href=url_for("cookies"))
+                    .setting-icon
+                        img(src=url_for("static", filename="img/setting-icon.svg"))
         .card
             .top-line.row
                 .date.col-xs-8
                     p.mb-0.accent 13 марта / 2021
                 .is-check.col-xs-4
-                    p.mb-0 Сегодня
-            .card-body#card-today
-                p.card-text= predictions.today
-        ul
-            li Milk
-            li Bread
-            li(class="fade") Chips
-            li(class="fade") Socks
+                    p.mb-0= zodiac
+            .card-body#card-body
+                .card-hide#card-hide-today
+                    .card-hide-wrap
+                        img.card-hide-img(src=url_for("static", filename="img/reveal-icon.svg"))
+                        p.card-hide-text Узнать предсказание
+                p.card-text#card-text-today
+    .menu
+        .menu-items
+            .yesterday
+                p Вчера
+            .today.active
+                p Сегодня
+            .tomorrow
+                p Завтра
 

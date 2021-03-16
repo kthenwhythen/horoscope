@@ -15,6 +15,9 @@ p
 .mb-0
   margin-bottom: 0
 
+.hide
+  opacity: 0
+
 body
   background-color: $background
 
@@ -104,7 +107,87 @@ body
   .card-body
     background-color: $accent-light
     border-radius: 8px
-    padding: 16px
+    position: relative
+    overflow: hidden
+    transition: max-height 1s ease-out
+    min-height: 96px
+    max-height: 0
+    
+
+    .card-hide
+      background-color: $accent
+      position: absolute
+      height: 100%
+      width: 100%
+      display: flex
+      align-items: center
+      justify-content: space-around
+      opacity: 100%
+      transition: opacity 1s ease-out
+
+      .card-hide-wrap
+
+        .card-hide-img
+          display: block
+          margin-left: auto
+          margin-right: auto
+
+        .card-hide-text
+          color: white
+          font-weight: bold
+          width: 150px
+          text-align: center
+          margin-bottom: 0
     
     .card-text
-      margin-bottom: 0
+      margin: 16px
+
+.menu
+  position: fixed
+  width: 100%
+  height: 48px
+  border-top: 1px solid
+  border-top-color: $accent-light
+  bottom: 0
+
+  .menu-items
+    padding-left: 10%
+    padding-right: 10%
+    display: flex
+    justify-content: space-between
+
+    .yesterday
+      display: inline-block
+      height: 48px
+      width: 64px
+      padding-top: 12px
+
+      p
+        text-align: center
+        color: $accent
+
+    .today
+      display: inline-block
+      height: 48px
+      width: 64px
+      padding-top: 12px
+
+      p
+        text-align: center
+        color: $accent
+
+    .tomorrow
+      display: inline-block
+      height: 48px
+      width: 64px
+      padding-top: 12px
+
+      p
+        text-align: center
+        color: $accent
+
+    .active
+
+      p
+        color: $accent-dark
+        font-weight: bold
