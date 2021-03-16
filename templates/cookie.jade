@@ -1,0 +1,12 @@
+- extends "base.jade"     
+- import "bootstrap/wtf.html" as wtf
+
+- block content
+    .container
+        .header 
+            .logo.col-xs-8
+                .logo-titles
+                    .logo-title Horoscope
+                    .logo-subtitle Знай как жить
+        .forms
+            | {{ wtf.quick_form(form, novalidate=True) }}
