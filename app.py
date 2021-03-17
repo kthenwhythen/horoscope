@@ -25,7 +25,7 @@ HEADER = {"Accept-Language": "ru-RU, ru;q=0.9,en-US;q=0.8,en;q=0,7",
 class CookieForm(FlaskForm):
     name = StringField("Имя", validators=[DataRequired()])
     zodiac = SelectField("Знак зодиака", choices=ZODIACS, validators=[DataRequired()])
-    submit = SubmitField("Submit")
+    submit = SubmitField("Войти")
 
 
 # Flask app init
@@ -83,6 +83,10 @@ def index():
 @app.route("/cookies", methods=["GET", "POST"])
 def cookies():
     form = CookieForm()
+    if request.cookies.get("zodiac"):
+        form.name.data = request.cookies.get("zodiac")
+    if request.cookies.get("name"):
+        form.zodiac.data = request.cookies.get("name")
     if form.validate_on_submit():
         cookie = make_response("Setting a cookie")
         cookie.set_cookie("name", form.name.data, max_age=60*60*24*365)
