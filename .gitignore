@@ -1,3 +1,4 @@
 static/.webassets-cache/
 .DS_store
 .vscode/
+__pycache__/

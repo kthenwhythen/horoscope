@@ -77,9 +77,9 @@ $(document).ready(
       $("#today-btn").removeClass("active")
       $("#tomorrow-btn").removeClass("active")
 
-      $("#card-yesterday").show()
-      $("#card-today").hide()
-      $("#card-tomorrow").hide()
+      $("#card-yesterday").delay(200).fadeIn(200)
+      $("#card-today").fadeOut(200)
+      $("#card-tomorrow").fadeOut(200)
     }
   )
 );
@@ -92,9 +92,9 @@ $(document).ready(
       $("#today-btn").addClass("active")
       $("#tomorrow-btn").removeClass("active")
 
-      $("#card-yesterday").hide()
-      $("#card-today").show()
-      $("#card-tomorrow").hide()
+      $("#card-yesterday").fadeOut(200)
+      $("#card-today").delay(200).fadeIn(200)
+      $("#card-tomorrow").fadeOut(200)
     }
   )
 );
@@ -107,9 +107,9 @@ $(document).ready(
       $("#today-btn").removeClass("active")
       $("#tomorrow-btn").addClass("active")
 
-      $("#card-yesterday").hide()
-      $("#card-today").hide()
-      $("#card-tomorrow").show()
+      $("#card-yesterday").fadeOut(200)
+      $("#card-today").fadeOut(200)
+      $("#card-tomorrow").delay(200).fadeIn(200)
     }
   )
 );

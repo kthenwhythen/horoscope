@@ -99,7 +99,7 @@ body
   display: none
 
 .card
-  margin-bottom: 16px
+  margin-bottom: 48px
   
   .top-line
     margin-left: 16px
@@ -112,6 +112,12 @@ body
     .is-check
       padding: 0
       text-align: right
+
+      .is-zodiac
+        display: block
+
+      .is-day
+        display: none
 
   .card-body
     background-color: $accent-light
@@ -133,6 +139,7 @@ body
       justify-content: space-around
       opacity: 100%
       transition: opacity 1s ease-out
+      cursor: pointer
 
       .card-hide-wrap
 
@@ -170,6 +177,14 @@ body
     display: flex
     justify-content: space-between
 
+    .menu-btn
+      -webkit-touch-callout: none
+      -webkit-user-select: none
+      -khtml-user-select: none
+      -moz-user-select: none
+      -ms-user-select: none
+      user-select: none
+
     .yesterday-btn
       display: inline-block
       height: 48px
@@ -189,6 +204,7 @@ body
       p
         text-align: center
         color: $accent
+        cursor: pointer
 
     .tomorrow-btn
       display: inline-block
@@ -199,11 +215,72 @@ body
       p
         text-align: center
         color: $accent
+        cursor: pointer
 
     .active
 
       p
         color: $accent-dark
         font-weight: bold
+        cursor: pointer
 
+
+@media (min-width: 992px)
+  .card
+    width: 480px
+    margin-left: auto
+    margin-right: auto
+
+    .top-line
+      .is-check
+        .is-zodiac
+          display: none
+        .is-day
+          display: block
+  
+  .yesterday
+    display: block
+
+  .today
+    display: block
+
+  .tomorrow
+    display: block
+
+  .menu
+    display: none
+
+  .header
+    margin-bottom: 48px
+    height: 64px
+
+    .logo
+      .logo-icon
+        img
+          height: 64px
+          width: 64px
+      .logo-titles
+        .logo-title
+          font-size: 36px
+          line-height: 1.2
+        .logo-subtitle
+          display: block
+          line-height: 2.4
+    .setting
+      display: block
+      width: auto
+      float: right
+      margin-top: 14px
+
+      .hello-user
+        display: inline-block
+        vertical-align: middle
+        margin-right: 16px
+        margin-bottom: 0
+
+      
+      a
+        display: inline-block
+        right: 0
+        .setting-icon
 

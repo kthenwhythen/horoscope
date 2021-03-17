@@ -7,7 +7,7 @@
 
 - block content
     .container
-        .header 
+        .header
             a(href=url_for("index"))
                 .logo.col-xs-8
                     .logo-icon
@@ -15,10 +15,10 @@
                     .logo-titles
                         .logo-title Horoscope
                         .logo-subtitle Знай как жить
-            .timer
-                p Следующее предсказание будет через 12 часов
-            .setting.col-xs-4
-                .hello-user Привет, Георгий!
+            .col-xs-4.setting
+                p.hello-user 
+                    | Привет, 
+                    span= name
                 a(href=url_for("cookies"))
                     .setting-icon
                         img(src=url_for("static", filename="img/setting-icon.svg"))
@@ -27,7 +27,8 @@
                 .date.col-xs-8
                     p.mb-0.accent= dates.yesterday
                 .is-check.col-xs-4
-                    p.mb-0= zodiac
+                    p.mb-0.is-zodiac= zodiac
+                    p.mb-0.is-day Вчера
             .card-body#card-body-yesterday
                 .card-hide#card-hide-yesterday
                     .card-hide-wrap#card-hide-wrap-yesterday
@@ -40,7 +41,8 @@
                 .date.col-xs-8
                     p.mb-0.accent= dates.today
                 .is-check.col-xs-4
-                    p.mb-0= zodiac
+                    p.mb-0.is-zodiac= zodiac
+                    p.mb-0.is-day Сегодня
             .card-body#card-body-today
                 .card-hide#card-hide-today
                     .card-hide-wrap#card-hide-wrap-today
@@ -53,7 +55,8 @@
                 .date.col-xs-8
                     p.mb-0.accent= dates.tomorrow
                 .is-check.col-xs-4
-                    p.mb-0= zodiac
+                    p.mb-0.is-zodiac= zodiac
+                    p.mb-0.is-day Завтра
             .card-body#card-body-tomorrow
                 .card-hide#card-hide-tomorrow
                     .card-hide-wrap#card-hide-wrap-tomorrow
@@ -63,10 +66,10 @@
                 p.card-text#card-text-tomorrow
     .menu
         .menu-items
-            .yesterday-btn#yesterday-btn
+            .yesterday-btn.menu-btn#yesterday-btn
                 p Вчера
-            .today-btn#today-btn.active
+            .today-btn.menu-btn#today-btn.active
                 p Сегодня
-            .tomorrow-btn#tomorrow-btn
+            .tomorrow-btn.menu-btn#tomorrow-btn
                 p Завтра
 

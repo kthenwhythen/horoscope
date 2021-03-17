@@ -9,6 +9,7 @@ import requests
 from bs4 import BeautifulSoup
 import datetime
 import random
+import evil
 
 
 ZODIACS = {"Овен": "aries", "Телец": "taurus", "Близнецы": "gemini", "Рак": "cancer",
@@ -17,15 +18,8 @@ ZODIACS = {"Овен": "aries", "Телец": "taurus", "Близнецы": "gem
 ZODIACS_REVERSE = {"aries": "Овен", "taurus": "Телец", "gemini": "Близнецы", "cancer": "Рак",
            "leo": "Лев", "virgo": "Дева", "libra": "Весы", "scorpio": "Скорпион",
            "sagittarius": "Стрелец", "capricorn": "Козерог", "aquarius": "Водолей", "pisces": "Рыбы"}
-
-
-
-
 HEADER = {"Accept-Language": "ru-RU, ru;q=0.9,en-US;q=0.8,en;q=0,7",
           "User-Agent": "Mozilla/5.0 (Macitosh; Intel Mac OS X 11_2_2) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/88.0.4324.192 Safari/537.36",}
-EVIL = ["З̘̮͓̂͌̐̂͛̑͑͊̒̚ͅа͖͈̯͍͉͈̥̗̬̭̟̏̓͆̽̏̓͒̿̒̈̑̊ͅв̫͍̮̝͛̊͐̅͐̀̓̄́͗ͅт̪͙̩͍̱̿͐̿̀̓̊́̂͂͒р̮͙̮̲̥͎̏̀̆̒̉̚̚а̘̫̤̯̥̦͕̪̤̪̤̭̾̿̒͂̈̾̀͌́̐̒ т̤͚͇̦͚̘̠̪̲̤̲̓͛͊͆͊́ы͖̝̳͎͕͙̖̗̥͒͒͑̏̽̅̂ у̮͇͍̦͔̦̣͊̏͒̀́͂̅̀̾м̞̗̙̟̩̟̈͒̅̀͊̈́̍р͙͕͙̜̦̮̞̏̌̅̂́͊̄̆̈́е̦̞̮̩͙͖͖̖̳̐͒̋̐̀͆̾̎͗̐̉̈́ш̮̲̘̝͚̬͖̞͉̈́̈́̓̿̎ь̘̪̮̤͌͂͂̄͛ͅ", "С̳̤͉͍̠̪̱̪̩͗̈̾̅̄̂̈̚м͚͎̳̞̭̭͔͈̞̫̱͔̝͍̩͇̊̍̾̈̊̅̅̽̋͗̽̇̌̑е͕͖͙͔͖͇̤̳̾̔͑̓͗̈͆̅͋р͔͚̳̗̰̫̟͖̝͈̲̎͒̍̎̅͛͌́̈́̈́͑̓т͈̥͇͎̣̫̯̳̤̞̠͊͊̄̌̓͊̅̽́͊͒̀ь̭̘͕̙̙͙͉̟̖͈̝́̇͂͋̿͋̅̾͊", "Д͍͈̗̦̣͙̰͉̰̠̱͈̈̽̍̀́̆̽̏̒̊̇̿̽̚о̮̫̣̙̪̫̝̱͖̜͈̯̤̩̮̥̩̫͑̈͆͐̑̃̎̽̋͒́͐̒͌͗̀͐̽̅̐͂̚б͎̱̘͖͇͚͇̲̟̭̬̭̫̗͓̙͇͒̀̎̐̅͂̌͗̓̏̿͛̒̇̿̏̌̉̄̊̚ͅр̥̣̦̙̤̝̯̮͍͍̜͓̦͈̱̗̫̊̎̃͌̃́̄̈̑̀̉̐͋̚ͅͅо̜͓̝̘͚͙͈̳͈̩̥̘̤͇͇̮̬͕̯̗̬́͐̔̅̾̀̇͆̓̉̿͋̉̏͛̍͋͐ п̱̮̦͔̥̳̥̦͙̝͓͇̮̲̝̠̞̥̰͉͙̣̠̮͑͛̊̌̌̾̅̓̇̽͋̅̇о͓̗̰̤̩͕͈̰̳̘͎͉̝̠̫̖͉̘͚̠̂̿̾̓͂̎̈́͐͋̈̋̈́̀͌̽̈̏̔̒̊̈́ͅж̘͈͇̠̟͇̫͈͈̩͎̩͇̜̖̦̥͔̱͔̱̝̠̅̒̔̊͊̉̃̾͑̊͐̑̇а̝̘̟̭̘̯̭̫̟̞͚͚̜͉̮̮̬̟̞͙͍͕̗͋̇͋̍̏̄̄́̊̍̏̒̍̀͐̐̊̂̔̐̈́͊̎̚л̘̖̳͍̯͍̗͈͙͔̩̫̗̟͖̘͛̈̈́͆̄̔̏̆̓͑̀̒̌̇͋̒ͅͅо͖̝͚̜͍̖̱͍̲̭̦̖̤̦̩̩̘́͌̏̒́̑͋͗͒̾͛̎̇̾̅̚ͅв̫̝̰̜̟͇̝͎̰͕̘̳̘̝̞̰̀̆̀̋͐̐̊̈́̑̓͛̂̽̂͌̀̂ͅа̦̭͕̘̱̩̯͓͔̘̜̞̠͎̗͇̂̃̏͆́̀̿̊͒̉͛̓̀͌ͅт̤͉͎͙͚̖̥͎̫͖̣͔̜͉̮͓̦̱̜͋̿͛̀̐͋̋̐̈́͛͊̈́̈͛̔ь̦͖͖̳̳͈̙͚͎̯͓̝̤̞̯̒̇̈́̾̃̅̅͂̅̄̽̐́͒̐ в͎͔̭̙͙͈͎̲͈̮̪̫̤̭͉͚̞͔͇͔͙̲̖̑̆̐̽̈̽͋̇͐̀͑̊̆̊͗̏̅͌͒̃͊ и̩͔̘̦͚͕͈͓̤͚̫̙̦̳͉̽̾̈́͐͑̽͋̓̓͌̅͋̽̒̔͐̇͛̾̉͑̏̋̊с͓̟̯̪̳͖͓̣͇̜͍̙̗͉̏̋͌͊̑̆̉̍̈́̀̐̋̄̾̐̆͛̍̚ͅͅѐ̜̞̤̠̫̟̱̗̘̤̞̳͙̣̰̲͖̮͙̯̝̠̓͌̋͋̉̃͛̄͒͆̈́̌͂͛̅͛̓̿̃̋̉к̙̥̫̖͇͙̯̦̤͓̠͎̮͚̤̦̝̖̂̎̌̍͐͋̇̽͊͐̃́̽͒̔а͓̗̫̠̖̲͓͇̜̙̲͋͂́͛̃̓͊̄̅̊̑̓͆̊̒̆̏̓̓ͅй̮̥̱͙͇͉͓͇̖̭͍͍͙̩͙̽͋̈́̅̍͋̂̏̏̽̋̚ͅ"]
-
-
 
 
 class CookieForm(FlaskForm):
@@ -62,8 +56,8 @@ assets.register('sass_all', sass)
 
 @cache.memoize(60*60)
 def get_prediction(zodiac, day):
-    if zodiac == "libra" and random.randint(1, 100) <= 5 and day != "yesterday":
-        prediction = random.choice(EVIL)
+    if zodiac == "libra" and random.randint(1, 100) <= 20 and day != "yesterday":
+        prediction = random.choice(evil.evil)
     else:
         response = requests.get(url=f"https://horo.mail.ru/prediction/{zodiac}/{day}/", headers=HEADER)
         soup = BeautifulSoup(response.text, "html.parser")
@@ -77,12 +71,13 @@ def index():
     if not request.cookies.get("zodiac") or not request.cookies.get("name"):
         return redirect(url_for("cookies"))
     zodiac = request.cookies.get("zodiac")
+    name = request.cookies.get("name")
     zodiac_ru = ZODIACS_REVERSE[zodiac]
     today = datetime.datetime.today()
     yesterday = today - datetime.timedelta(days=1)
     tomorrow = today + datetime.timedelta(days=1)
     dates = {"today": today.strftime("%d / %m / %Y"), "yesterday": yesterday.strftime("%d / %m / %Y"), "tomorrow": tomorrow.strftime("%d / %m / %Y")}
-    return render_template("index.jade", path="img/logo-icon.svg", zodiac=zodiac_ru, dates=dates)
+    return render_template("index.jade", path=f"img/logos/{zodiac}.svg", zodiac=zodiac_ru, dates=dates, name=name)
 
 
 @app.route("/cookies", methods=["GET", "POST"])

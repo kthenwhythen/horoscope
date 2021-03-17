@@ -82,7 +82,7 @@ body {
   display: none; }
 
 .card {
-  margin-bottom: 16px; }
+  margin-bottom: 48px; }
   .card .top-line {
     margin-left: 16px;
     margin-right: 16px;
@@ -92,6 +92,10 @@ body {
     .card .top-line .is-check {
       padding: 0;
       text-align: right; }
+      .card .top-line .is-check .is-zodiac {
+        display: block; }
+      .card .top-line .is-check .is-day {
+        display: none; }
   .card .card-body {
     background-color: #DBE2EF;
     border-radius: 8px;
@@ -109,7 +113,8 @@ body {
       align-items: center;
       justify-content: space-around;
       opacity: 100%;
-      transition: opacity 1s ease-out; }
+      transition: opacity 1s ease-out;
+      cursor: pointer; }
       .card .card-body .card-hide .card-hide-wrap .card-hide-img {
         display: block;
         margin-left: auto;
@@ -139,6 +144,13 @@ body {
     padding-right: 10%;
     display: flex;
     justify-content: space-between; }
+    .menu .menu-items .menu-btn {
+      -webkit-touch-callout: none;
+      -webkit-user-select: none;
+      -khtml-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none; }
     .menu .menu-items .yesterday-btn {
       display: inline-block;
       height: 48px;
@@ -154,7 +166,8 @@ body {
       padding-top: 12px; }
       .menu .menu-items .today-btn p {
         text-align: center;
-        color: #3F72AF; }
+        color: #3F72AF;
+        cursor: pointer; }
     .menu .menu-items .tomorrow-btn {
       display: inline-block;
       height: 48px;
@@ -162,7 +175,52 @@ body {
       padding-top: 12px; }
       .menu .menu-items .tomorrow-btn p {
         text-align: center;
-        color: #3F72AF; }
+        color: #3F72AF;
+        cursor: pointer; }
     .menu .menu-items .active p {
       color: #112D4E;
-      font-weight: bold; }
+      font-weight: bold;
+      cursor: pointer; }
+
+@media (min-width: 992px) {
+  .card {
+    width: 480px;
+    margin-left: auto;
+    margin-right: auto; }
+    .card .top-line .is-check .is-zodiac {
+      display: none; }
+    .card .top-line .is-check .is-day {
+      display: block; }
+  .yesterday {
+    display: block; }
+  .today {
+    display: block; }
+  .tomorrow {
+    display: block; }
+  .menu {
+    display: none; }
+  .header {
+    margin-bottom: 48px;
+    height: 64px; }
+    .header .logo .logo-icon img {
+      height: 64px;
+      width: 64px; }
+    .header .logo .logo-titles .logo-title {
+      font-size: 36px;
+      line-height: 1.2; }
+    .header .logo .logo-titles .logo-subtitle {
+      display: block;
+      line-height: 2.4; }
+    .header .setting {
+      display: block;
+      width: auto;
+      float: right;
+      margin-top: 14px; }
+      .header .setting .hello-user {
+        display: inline-block;
+        vertical-align: middle;
+        margin-right: 16px;
+        margin-bottom: 0; }
+      .header .setting a {
+        display: inline-block;
+        right: 0; } }
