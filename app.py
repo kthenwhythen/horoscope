@@ -83,16 +83,16 @@ def index():
 @app.route("/cookies", methods=["GET", "POST"])
 def cookies():
     form = CookieForm()
-    if request.cookies.get("zodiac"):
-        form.name.data = request.cookies.get("zodiac")
-    if request.cookies.get("name"):
-        form.zodiac.data = request.cookies.get("name")
     if form.validate_on_submit():
         cookie = make_response("Setting a cookie")
         cookie.set_cookie("name", form.name.data, max_age=60*60*24*365)
         cookie.set_cookie("zodiac", ZODIACS[form.zodiac.data], max_age=60*60*24*365)
         cookie.headers['location'] = url_for('index')
         return make_response(cookie, 302)
+    if request.cookies.get("zodiac"):
+        form.zodiac.data = ZODIACS_REVERSE[request.cookies.get("zodiac")]
+    if request.cookies.get("name"):
+        form.name.data = request.cookies.get("name")
     return render_template("cookie.jade", form=form)
 
 
