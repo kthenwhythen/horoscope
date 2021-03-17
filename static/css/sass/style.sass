@@ -89,6 +89,15 @@ body
     font-size: 14px
     height: 36px
 
+.yesterday
+  display: none
+
+.today
+  display: block
+
+.tomorrow
+  display: none
+
 .card
   margin-bottom: 16px
   
@@ -139,7 +148,7 @@ body
           text-align: center
           margin-bottom: 0
 
-    #loader
+    .loader
       display: none
       margin-left: auto
       margin-right: auto
@@ -161,7 +170,7 @@ body
     display: flex
     justify-content: space-between
 
-    .yesterday
+    .yesterday-btn
       display: inline-block
       height: 48px
       width: 64px
@@ -171,7 +180,7 @@ body
         text-align: center
         color: $accent
 
-    .today
+    .today-btn
       display: inline-block
       height: 48px
       width: 64px
@@ -181,7 +190,7 @@ body
         text-align: center
         color: $accent
 
-    .tomorrow
+    .tomorrow-btn
       display: inline-block
       height: 48px
       width: 64px

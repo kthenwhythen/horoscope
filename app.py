@@ -1,4 +1,4 @@
-from flask import Flask, render_template, redirect, url_for, make_response, request
+from flask import Flask, render_template, redirect, url_for, make_response, request, jsonify
 from flask_caching import Cache
 from flask_bootstrap import Bootstrap
 from flask_assets import Environment, Bundle
@@ -78,7 +78,11 @@ def index():
         return redirect(url_for("cookies"))
     zodiac = request.cookies.get("zodiac")
     zodiac_ru = ZODIACS_REVERSE[zodiac]
-    return render_template("index.jade", path="img/logo-icon.svg", zodiac=zodiac_ru)
+    today = datetime.datetime.today()
+    yesterday = today - datetime.timedelta(days=1)
+    tomorrow = today + datetime.timedelta(days=1)
+    dates = {"today": today.strftime("%d / %m / %Y"), "yesterday": yesterday.strftime("%d / %m / %Y"), "tomorrow": tomorrow.strftime("%d / %m / %Y")}
+    return render_template("index.jade", path="img/logo-icon.svg", zodiac=zodiac_ru, dates=dates)
 
 
 @app.route("/cookies", methods=["GET", "POST"])

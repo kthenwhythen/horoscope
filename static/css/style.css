@@ -72,6 +72,15 @@ body {
     font-size: 14px;
     height: 36px; }
 
+.yesterday {
+  display: none; }
+
+.today {
+  display: block; }
+
+.tomorrow {
+  display: none; }
+
 .card {
   margin-bottom: 16px; }
   .card .top-line {
@@ -111,7 +120,7 @@ body {
         width: 150px;
         text-align: center;
         margin-bottom: 0; }
-    .card .card-body #loader {
+    .card .card-body .loader {
       display: none;
       margin-left: auto;
       margin-right: auto; }
@@ -130,28 +139,28 @@ body {
     padding-right: 10%;
     display: flex;
     justify-content: space-between; }
-    .menu .menu-items .yesterday {
+    .menu .menu-items .yesterday-btn {
       display: inline-block;
       height: 48px;
       width: 64px;
       padding-top: 12px; }
-      .menu .menu-items .yesterday p {
+      .menu .menu-items .yesterday-btn p {
         text-align: center;
         color: #3F72AF; }
-    .menu .menu-items .today {
+    .menu .menu-items .today-btn {
       display: inline-block;
       height: 48px;
       width: 64px;
       padding-top: 12px; }
-      .menu .menu-items .today p {
+      .menu .menu-items .today-btn p {
         text-align: center;
         color: #3F72AF; }
-    .menu .menu-items .tomorrow {
+    .menu .menu-items .tomorrow-btn {
       display: inline-block;
       height: 48px;
       width: 64px;
       padding-top: 12px; }
-      .menu .menu-items .tomorrow p {
+      .menu .menu-items .tomorrow-btn p {
         text-align: center;
         color: #3F72AF; }
     .menu .menu-items .active p {
