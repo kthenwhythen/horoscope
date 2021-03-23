@@ -2,7 +2,7 @@
 
 // default title
 - block title
-    | Sample App for Flask-Bootstrap
+    | Horoscope
 
 // Legacy browser support
 - import "bootstrap/fixes.html" as fixes 
@@ -10,6 +10,7 @@
 - block head
     | {{super()}}
     | {{fixes.ie8()}}
+    link(rel="shortcut icon", href=url_for("static", filename="img/favicon.ico"))
 
 - block styles 
     // Technical styles (like bootstrap)

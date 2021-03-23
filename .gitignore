@@ -3,3 +3,4 @@ static/.webassets-cache/
 .vscode/
 __pycache__/
 .venv/
+/.idea/
